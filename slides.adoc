@@ -89,11 +89,13 @@ for(int i = 0; i=SIZE; i++){
 
 == How to make C++ Safe
 
+Don't use the unsafe stuff.
+
 There are solutions which comes down to:
 
 * Avoid unsafe language features
 * Use safe library alternatives
-* Enforcement via static analysis tools
+* Enforce via static analysis tools
 
 // == The current landscape of safe C++
 
