@@ -21,14 +21,15 @@
 * Core guidlines and GSL
 
 
-== Memory Safety is hot
+== Memory Safety is Hot
 
-* The White House Office of the National Cyber Director (ONCD) link:https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/[press release] offering new guidance document that provides recommendations for securing cyber infrastructure. 
-*  The National Security Agency (NSA) has link:https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/3215760/nsa-releases-guidance-on-how-to-protect-against-software-memory-safety-issues/[released] a new guidance document that provides recommendations for securing {cpp} code.
-// * A NIST link:https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/3215760/nsa-releases-guidance-on-how-to-protect-against-software-memory-safety-issues/[press release] published guidance today to help software developers and operators prevent and mitigate software memory safety issues, which account for a large portion of exploitable vulnerabilities.
-* link:https://www.cisa.gov/case-memory-safe-roadmaps[CISA, NSA, FBI press release] pushing for meory safe roadmaps from organizations. 
-* and more...
-* Most of us have heard the "70% of all vulnerabilities are memory safety issues" statistic
+image::images/MemSafePressReleases.jpg[]
+// * The White House Office of the National Cyber Director (ONCD) link:https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/[press release] offering new guidance document that provides recommendations for securing cyber infrastructure. 
+// *  The National Security Agency (NSA) has link:https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/3215760/nsa-releases-guidance-on-how-to-protect-against-software-memory-safety-issues/[released] a new guidance document that provides recommendations for securing {cpp} code.
+// // * A NIST link:https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/3215760/nsa-releases-guidance-on-how-to-protect-against-software-memory-safety-issues/[press release] published guidance today to help software developers and operators prevent and mitigate software memory safety issues, which account for a large portion of exploitable vulnerabilities.
+// * link:https://www.cisa.gov/case-memory-safe-roadmaps[CISA, NSA, FBI press release] pushing for meory safe roadmaps from organizations. 
+// * and more...
+// * Most of us have heard the "70% of all vulnerabilities are memory safety issues" statistic
 
 == {cpp} has a bad rep
 "memory unsafe programming languages, such as C and C++, are among the most common programming languages"
