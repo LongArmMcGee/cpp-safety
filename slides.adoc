@@ -99,22 +99,53 @@ for(int i = 0; i=SIZE; i++){
 }
 ----
 
-== How to make C++ Safe
+== Make C++ Safe
 
-Don't use the unsafe stuff.
+Replace unsafe features with safe alternatives.
 
-There are solutions which comes down to:
+The Guidelines Support Library (GSL) can provide these for older {cpp} standards versions
 
-* Avoid unsafe language features
-* Use safe library alternatives
-* Enforce via static analysis tools
+=== Avoid casting
 
-// == The current landscape of safe C++
+Especially avoid C-style casts
 
-// * Bjarne Stroustrup, the creator of {cpp}, and Herb Sutter, the chair of the ISO C++ standards committee have been discussing how {cpp} can be used safely.
-// * Their papers discussing solutions on the topic date back to 2015
+[source, c++]
+----
+(uint16_t) long_data; // C-style cast
+uint16_t (long_data); // C-style cast
+static_cast<uint16_t>(long_data); // C++ style cast
+const_cast<uint16_t>(long_data); // C++ style cast
+reinterpret_cast<uint16_t>(long_data); // C++ style cast
+----
 
-// [%notitle]
+=== Variants over Unions
+
+[source, c++]
+----
+// Variants
+std::variant<int, float> data;
+data = 42;
+int value = std::get<int>(data);
+----
+
+=== Ownership & Lifetimes
+
+This is a lot to cover.
+See clang-tidy ownership checker
+// https://llvm.org/devmtg/2019-04/slides/TechTalk-Horvath-Implementing_the_C++_Core_Guidelines_Lifetime.pdf
+https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/owning-memory.html
+
+=== Span over raw arrays
+[source, c++]
+----
+    int array[] = {1, 2, 3, 4, 5};
+    gsl::span<int, 5> s(array);
+
+    for(int i : s) {
+        std::cout << i << std::endl;
+    }
+----
+
 === Core Materials
 
 image::images/CppCoreGuidelinesGSL.jpg[]
