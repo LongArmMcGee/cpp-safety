@@ -52,7 +52,7 @@ image::images/MemSafePressReleases.jpg[]
 
 == Why is C++ unsafe?
 
-=== unsafe casting
+=== Casting
 
 [source, c++]
 ----
@@ -62,7 +62,7 @@ uint16_t truncated = (uint16_t) long_data;
 // Lost information
 ----
 
-=== Unions are crazy
+=== Unions
 [source, c++]
 ----
 // Silly example, but we do this with bits 
@@ -79,7 +79,7 @@ data.f =  42.0;
 int value = f;
 ----
 
-=== Ownership/lifetimes what?
+=== Ownership & Lifetimes
 [source, c++]
 ----
 // lack of ownership/lifetime checking, 
@@ -88,7 +88,7 @@ delete anInt;
 int32_t badRead = *anInt;
 ----
 
-=== Raw arrays because speed
+=== Raw arrays
 [source, c++]
 ----
 // Raw arrays/pointers
