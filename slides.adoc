@@ -31,12 +31,24 @@ image::images/MemSafePressReleases.jpg[]
 // * and more...
 // * Most of us have heard the "70% of all vulnerabilities are memory safety issues" statistic
 
-== {cpp} has a bad rep
-// "memory unsafe programming languages, such as C and C++, are among the most common programming languages"
+== {cpp} has a bad reputation
+// [quote, White House ONCD, A Path Toward Secure And Measurable Software, 2024-02-26]
+[quote, White House ONCD]
+"*memory unsafe* programming languages, such as *C and C++*",
 
-NSA Press Release: "NSA advises [...] a strategic shift from programming languages [...], such as C/C++ and assembly, to a memory safe language when possible"
+// _White House ONCD, A Path Toward Secure And Measurable Software, 2024-02-26_
 
-"[...] languages that both lack traits associated with memory safety and also have high proliferation across critical systems, such as C and C++"
+// [quote, NSA, Cybersecurity Information Sheet, 2023-04]
+[quote, NSA]
+"NSA advises organizations to [...] shift from [...] *C/C++* [...] to a memory safe language when possible"
+
+// _NSA, Cybersecurity Information Sheet, 2023-04_
+
+// [quote, CISA, The Case for Memory Safe Roadmaps, 2023-12]
+[quote, CISA]
+"C and C++ [...] can lead to memory unsafe code and are still among the most widely used languages today."
+
+// _CISA, The Case for Memory Safe Roadmaps, 2023-12_
 
 == Why is C++ unsafe?
 
