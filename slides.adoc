@@ -34,19 +34,19 @@ image::images/MemSafePressReleases.jpg[]
 == {cpp} has a bad reputation
 // [quote, White House ONCD, A Path Toward Secure And Measurable Software, 2024-02-26]
 [quote, White House ONCD]
-"*memory unsafe* programming languages, such as *C and C++*",
+"*memory unsafe* programming languages, such as *C and {cpp}*",
 
 // _White House ONCD, A Path Toward Secure And Measurable Software, 2024-02-26_
 
 // [quote, NSA, Cybersecurity Information Sheet, 2023-04]
 [quote, NSA]
-"NSA advises organizations to [...] shift from [...] *C/C++* [...] to a memory safe language when possible"
+"NSA advises organizations to [...] shift from [...] *C/{cpp}* [...] to a memory safe language when possible"
 
 // _NSA, Cybersecurity Information Sheet, 2023-04_
 
 // [quote, CISA, The Case for Memory Safe Roadmaps, 2023-12]
 [quote, CISA]
-"C and C++ [...] can lead to memory unsafe code and are still among the most widely used languages today."
+"C and {cpp} [...] can lead to memory unsafe code and are still among the most widely used languages today."
 
 // _CISA, The Case for Memory Safe Roadmaps, 2023-12_
 
