@@ -17,9 +17,10 @@
 
 * Memory Safety is hot
 * {cpp} has a bad rep
-* All is not lost, there are solutions
-* Core guidlines and GSL
-
+* Why is {cpp} unsafe?
+* How can we make {cpp} safe?
+* Static analysis to support safe {cpp}
+* Background reading
 
 == Memory Safety is Hot
 
