@@ -50,36 +50,75 @@ image::images/MemSafePressReleases.jpg[]
 
 // _CISA, The Case for Memory Safe Roadmaps, 2023-12_
 
-== Why is C++ unsafe?
+== Why is {cpp} unsafe?
 
-=== Casting
+* Type Safety
+* Bounds Safety
+* Lifetime Safety
+
+=== Type Safety, Casting
 
 [source, c++]
 ----
-// Casting
-uint32_t long_data = 0xDEADBEEF;
-uint16_t truncated = (uint16_t) long_data;
-// Lost information
+// IEEE 754 represnation of NaN
+uint32_t NaN = 0x7F800001;
+float f = *reinterpret_cast<float*>(&bad_value);
+
+// May not be intended and may raise an exception
+std::cout << f << std::endl;
 ----
 
-=== Unions
+=== Type Safety, Uninitialized Data
+
 [source, c++]
 ----
-// Silly example, but we do this with bits 
+float f1;
+float f2;
+
+// Uninitialized stack data can have arbitrary values 
+// and result in a floating point exception
+float f3 = f1 / f2;
+----
+
+=== Type Safety, Unions
+[source, c++]
+----
+// We do this a lot with bits on HW systems
 union Data
 {
-  int i;
+  uint32_t i;
   float f;
 }
 
 Data data;
-data.f =  42.0;
+data.i =  0x7F800001;
 
-// Yeah not int data
-int value = f;
+// NaN
+std::cout << f;
 ----
 
-=== Ownership & Lifetimes
+// === Type Safety, varags
+// TODO I don't know anything about varags
+// Don't use va_arg
+
+
+=== Bounds Safety, Raw arrays
+// Bounds.1: Don’t use pointer arithmetic. Use span instead: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
+// Bounds.2: Only index into arrays using constant expressions: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
+// Bounds.3: No array-to-pointer decay: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
+// Bounds.4: Don’t use standard-library functions and types that are not bounds-checked: Use the standard library in a type-safe manner.
+
+[source, c++]
+----
+// Raw arrays/pointers
+char buffer[SIZE];
+
+for(int i = 0; i=SIZE; i++){
+  read(buffer[i]);  // WRONG: i = SIZE is out of bounds
+}
+----
+
+=== Lifetime Safety, Use after free
 [source, c++]
 ----
 // lack of ownership/lifetime checking, 
@@ -88,16 +127,7 @@ delete anInt;
 int32_t badRead = *anInt;
 ----
 
-=== Raw arrays
-[source, c++]
-----
-// Raw arrays/pointers
-char buffer[SIZE];
 
-for(int i = 0; i=SIZE; i++){
-  read(buffer[i]);  // WRONG: read(buffer[SIZE])
-}
-----
 
 == Make C++ Safe
 
