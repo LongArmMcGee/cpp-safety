@@ -343,12 +343,12 @@ for(int i : s) {
 
 image::images/CppCoreGuidelinesGSL.jpg[]
 
-=== Foundational Docs of Safe C++
+=== Papers & Materials
 
-* Bjarne and Herb lay the groundwork in their white papers and talks
-* See their _very_ detailed documents @ link:https://github.com/isocpp/CppCoreGuidelines/tree/master/docs[github.com/isocpp/CppCoreGuidelines/docs]
+* link:https://github.com/isocpp/CppCoreGuidelines/tree/master/docs[github.com/isocpp/CppCoreGuidelines/docs]
 ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/Introduction%20to%20type%20and%20resource%20safety.pdf[A brief introduction to {cpp}'s model for type and resource safety]
 ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/Lifetime.pdf[Lifetime Safety: Preventing ommon dangling]
+** Others
 // ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/P0122R4.pdf[span: bounds-safe views for sequences of objets]
 // ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/ctor-dtor-raii-popl12.pdf[A Mehanized Semanticsc for {cpp} Objet Construction and Destruction, with Appliations to Resourcce Management]
 // ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/gsl-intro.md[Using the Guidelines Support Library (GSL): A Tutorial and FAQ]
