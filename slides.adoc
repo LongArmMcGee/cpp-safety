@@ -132,9 +132,79 @@ int32_t badRead = *anInt;
 
 == Make C++ Safe
 
-Replace unsafe features with safe alternatives.
+// [.column.has-text-left]
+--
+. Don't use unsafe features
+. Use safe alternatives
+. The Guidelines Support Library (GSL) can provide these for older {cpp} standards versions
+. https://github.com/microsoft/GSL
+--
 
-The Guidelines Support Library (GSL) can provide these for older {cpp} standards versions
+[.column]
+image::images/superset-subset-cpp.jpg[]
+
+=== Subset and superset of C++
+
+image::images/CppCoreGuidelinesGSL.jpg[]
+
+=== Core Guidelines Profiles
+
+a set of deterministic and portably enforceable subset of rules (i.e., restrictions) that are designed to achieve a specific guarantee. “Deterministic” means they require only local analysis and could be implemented in a compiler (though they don’t need to be). “Portably enforceable” means they are like language rules, so programmers can count on different enforcement tools giving the same answer for the same code.
+
+Conforming code is considered to be safe by construction with regard to the safety properties targeted by that profile. Conforming code will not be the root cause of errors for that property, although such errors might be introduced into a program by other code, libraries or the external environment.
+
+
+=== Safety Profiles
+Current profiles include:
+
+=== Type safety
+
+For the purposes of this section, type-safety is defined to be the property that a variable is not used in a way that doesn’t obey the rules for the type of its definition. Memory accessed as a type T should not be valid memory that actually contains an object of an unrelated type U. Note that the safety is intended to be complete when combined also with Bounds safety and Lifetime safety.
+
+=== Type safety profile summary:
+
+    Type.1: Avoid casts:
+        Don’t use reinterpret_cast; 
+        A strict version of Avoid casts and prefer named casts.
+        Don’t use static_cast for arithmetic types; 
+        A strict version of Avoid casts and prefer named casts.
+        Don’t cast between pointer types where the source type and the target type are the same; 
+        A strict version of Avoid casts.
+        Don’t cast between pointer types when the conversion could be implicit; 
+        A strict version of Avoid casts.
+    Type.2: Don’t use static_cast to downcast: Use dynamic_cast instead.
+    Type.3: Don’t use const_cast to cast away const (i.e., at all): Don’t cast away const.
+    Type.4: Don’t use C-style (T)expression or functional T(expression) casts: Prefer construction or named casts or T{expression}.
+    Type.5: Don’t use a variable before it has been initialized: always initialize.
+    Type.6: Always initialize a data member: always initialize, possibly using default constructors or default member initializers.
+    Type.7: Avoid naked union: Use variant instead.
+    Type.8: Avoid varargs: Don’t use va_arg arguments.
+
+
+=== Bounds safety
+
+We define bounds-safety to be the property that a program does not use an object to access memory outside of the range that was allocated for it. Bounds safety is intended to be complete only when combined with Type safety and Lifetime safety, which cover other unsafe operations that allow bounds violations.
+
+=== Bounds safety profile summary:
+
+* Bounds.1: Don’t use pointer arithmetic. 
+Use span instead: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
+* Bounds.2: Only index into arrays using constant expressions: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
+* Bounds.3: No array-to-pointer decay: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
+* Bounds.4: Don’t use standard-library functions and types that are not bounds-checked: Use the standard library in a type-safe manner.
+
+=== Lifetime safety
+
+Accessing through a pointer that doesn’t point to anything is a major source of errors, and very hard to avoid in many traditional C or C++ styles of programming. For example, a pointer might be uninitialized, the nullptr, point beyond the range of an array, or to a deleted object.
+
+=== Lifetime safety profile summary:
+
+* Lifetime.1: Don’t dereference a possibly invalid pointer: detect or avoid.
+
+There is a lot under the covers here. 
+TODO see lifetime checkers
+
+
 
 === Avoid casting
 
