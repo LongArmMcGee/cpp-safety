@@ -168,18 +168,22 @@ For the purposes of this section, type-safety is defined to be the property that
         A strict version of Avoid casts and prefer named casts.
         Don’t use static_cast for arithmetic types; 
         A strict version of Avoid casts and prefer named casts.
-        Don’t cast between pointer types where the source type and the target type are the same; 
-        A strict version of Avoid casts.
-        Don’t cast between pointer types when the conversion could be implicit; 
-        A strict version of Avoid casts.
-    Type.2: Don’t use static_cast to downcast: Use dynamic_cast instead.
-    Type.3: Don’t use const_cast to cast away const (i.e., at all): Don’t cast away const.
-    Type.4: Don’t use C-style (T)expression or functional T(expression) casts: Prefer construction or named casts or T{expression}.
-    Type.5: Don’t use a variable before it has been initialized: always initialize.
-    Type.6: Always initialize a data member: always initialize, possibly using default constructors or default member initializers.
+    Don’t cast between pointer types where the source type and 
+    the target type are the same; A strict version of Avoid casts.
+    Don’t cast between pointer types when the conversion could be
+    implicit; A strict version of Avoid casts.
+  Type.2: Don’t use static_cast to downcast:
+    Use dynamic_cast instead.
+  Type.3: Don’t use const_cast to cast away const (i.e., at all): 
+    Don’t cast away const.
+  Type.4: Don’t use C-style (T)expression or functional T(expression)
+    casts: Prefer construction or named casts or T{expression}.
+  Type.5: Don’t use a variable before it has been initialized:
+    always initialize.
+  Type.6: Always initialize a data member: always initialize,
+    possibly using default constructors or default member initializers.
     Type.7: Avoid naked union: Use variant instead.
     Type.8: Avoid varargs: Don’t use va_arg arguments.
-
 
 === Bounds safety
 
@@ -187,11 +191,17 @@ We define bounds-safety to be the property that a program does not use an object
 
 === Bounds safety profile summary:
 
-* Bounds.1: Don’t use pointer arithmetic. 
-Use span instead: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
-* Bounds.2: Only index into arrays using constant expressions: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
-* Bounds.3: No array-to-pointer decay: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
-* Bounds.4: Don’t use standard-library functions and types that are not bounds-checked: Use the standard library in a type-safe manner.
+  Bounds.1: Don’t use pointer arithmetic. 
+  Use span instead: Pass pointers to single objects (only) and 
+  Keep pointer arithmetic simple.
+  Bounds.2: Only index into arrays using constant expressions:
+  Pass pointers to single objects (only) and Keep pointer 
+  arithmetic simple.
+  Bounds.3: No array-to-pointer decay: Pass pointers to single
+  objects (only) and Keep pointer arithmetic simple.
+  Bounds.4: Don’t use standard-library functions and types that 
+  are not bounds-checked: Use the standard library in a type-safe 
+  manner.
 
 === Lifetime safety
 
