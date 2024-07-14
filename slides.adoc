@@ -339,10 +339,6 @@ for(int i : s) {
 }
 ----
 
-=== Core Materials
-
-image::images/CppCoreGuidelinesGSL.jpg[]
-
 === Papers & Materials
 
 * link:https://github.com/isocpp/CppCoreGuidelines/tree/master/docs[github.com/isocpp/CppCoreGuidelines/docs]
