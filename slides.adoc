@@ -129,19 +129,20 @@ int32_t badRead = *anInt;
 ----
 
 
-
+[.columns]
 == Make C++ Safe
-
-// [.column.has-text-left]
+[.column.right]
+--
+image::images/superset-subset-cpp.jpg[]
+--
+[.column.has-text-left]
 --
 . Don't use unsafe features
 . Use safe alternatives
 . The Guidelines Support Library (GSL) can provide these for older {cpp} standards versions
-. https://github.com/microsoft/GSL
+// . https://github.com/microsoft/GSL
 --
 
-[.column]
-image::images/superset-subset-cpp.jpg[]
 
 === Subset and superset of C++
 
@@ -149,9 +150,38 @@ image::images/CppCoreGuidelinesGSL.jpg[]
 
 === Core Guidelines Profiles
 
-a set of deterministic and portably enforceable subset of rules (i.e., restrictions) that are designed to achieve a specific guarantee. “Deterministic” means they require only local analysis and could be implemented in a compiler (though they don’t need to be). “Portably enforceable” means they are like language rules, so programmers can count on different enforcement tools giving the same answer for the same code.
+  A set of deterministic and portably enforceable rules ensures
+  specific safety guarantees. 
+  
+  “Deterministic” means they need 
+  only local analysis and could be compiler-implemented. 
+  
+  “Portably enforceable” means they function like language 
+  rules, providing consistent enforcement across tools. 
+  
+  Conforming code is considered safe for targeted properties, 
+  though errors may still arise from other code, libraries, 
+  or external factors.
 
-Conforming code is considered to be safe by construction with regard to the safety properties targeted by that profile. Conforming code will not be the root cause of errors for that property, although such errors might be introduced into a program by other code, libraries or the external environment.
+// a set of deterministic and portably enforceable subset of rules
+// that are designed to achieve a specific 
+// guarantee. “Deterministic” means they require only local
+// analysis and could be implemented in a compiler. “Portably enforceable” means they are like
+// language rules, providing consistent enforcement across tools.
+
+//  a set of deterministic and portably enforceable subset of rules
+//  (i.e., restrictions) that are designed to achieve a specific 
+//  guarantee. “Deterministic” means they require only local
+//  analysis and could be implemented in a compiler (though they
+//  don’t need to be). “Portably enforceable” means they are like
+//  language rules, so programmers can count on different
+//  enforcement tools giving the same answer for the same code.
+
+// Conforming code is considered to be safe by construction with
+// regard to the safety properties targeted by that profile.
+// Conforming code will not be the root cause of errors for that
+// property, although such errors might be introduced into a
+// program by other code, libraries or the external environment.
 
 
 === Safety Profiles
@@ -159,15 +189,15 @@ Current profiles include:
 
 === Type safety
 
-For the purposes of this section, type-safety is defined to be the property that a variable is not used in a way that doesn’t obey the rules for the type of its definition. Memory accessed as a type T should not be valid memory that actually contains an object of an unrelated type U. Note that the safety is intended to be complete when combined also with Bounds safety and Lifetime safety.
+[...] type-safety is defined to be the property that a variable is not used in a way that doesn’t obey the rules for the type of its definition. Memory accessed as a type T should not be valid memory that actually contains an object of an unrelated type U. Note that the safety is intended to be complete when combined also with Bounds safety and Lifetime safety.
 
 === Type safety profile summary:
 
-    Type.1: Avoid casts:
-        Don’t use reinterpret_cast; 
-        A strict version of Avoid casts and prefer named casts.
-        Don’t use static_cast for arithmetic types; 
-        A strict version of Avoid casts and prefer named casts.
+  Type.1: Avoid casts:
+    Don’t use reinterpret_cast; 
+    A strict version of Avoid casts and prefer named casts.
+    Don’t use static_cast for arithmetic types; 
+    A strict version of Avoid casts and prefer named casts.
     Don’t cast between pointer types where the source type and 
     the target type are the same; A strict version of Avoid casts.
     Don’t cast between pointer types when the conversion could be
@@ -182,8 +212,8 @@ For the purposes of this section, type-safety is defined to be the property that
     always initialize.
   Type.6: Always initialize a data member: always initialize,
     possibly using default constructors or default member initializers.
-    Type.7: Avoid naked union: Use variant instead.
-    Type.8: Avoid varargs: Don’t use va_arg arguments.
+  Type.7: Avoid naked union: Use variant instead.
+  Type.8: Avoid varargs: Don’t use va_arg arguments.
 
 === Bounds safety
 
