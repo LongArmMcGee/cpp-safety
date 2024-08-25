@@ -244,35 +244,46 @@ Accessing through a pointer that doesn’t point to anything is a major source o
 There is a lot under the covers here. 
 TODO see lifetime checkers
 
+== What does this look like in practice?
+ 
 
 
 === Avoid casting
 
-Especially avoid C-style casts
+Generally, avoid casting and NEVER use C-style casts
 
 [source, c++]
 ----
 // C style casts can perform many types of casts
-(uint16_t) long_data; // C-style cast
-uint16_t (long_data); // C-style cast
+uint32_t long_int = 42;
+uint16_t bad_cast = (uint16_t) long_int; // Bad
+uint16_t bad_cast = uint16_t (long_int); // Bad
 
 // C++ style casts are more specific and limited
-static_cast<uint16_t>(long_data); // C++ style cast
-const_cast<uint16_t>(long_data); // C++ style cast
-reinterpret_cast<uint16_t>(long_data); // C++ style cast
+static_cast<uint16_t>(long_int); // Better
+const_cast<uint16_t>(long_int); // Better
+reinterpret_cast<uint16_t>(long_int); // Better
+
+int64_t x = {long_int};
+uint16_t x{long_int}; // Compile Error: -Wc++11-narrowing
+gsl::narrow_cast<uint16_t>(long_int); // Searchable static_cast
 ----
 
 === Variants over Unions
 
+Allows access to one of many types in a type-safe manner and disallows type-punning.
+
 [source, c++]
 ----
 // Variants
-std::variant<int, float> data;
-data = 42;
-int value = std::get<int>(data);
+std::variant<int, float> v;
+v = 12.0f;
+int i = std::get<int>(v); // Throws std::bad_variant_access
+const int* p_int = std::get_if<int>(&v);   // Avoid throw by checking for nullptr
+const float* pf = std::get_if<float>(&v); // Valid pointer
 ----
 
-=== Ownership, shared_ptr 
+=== Ownership, shared_ptr
 shared_ptr is a shared ownership smart pointer that provides the following features:
 
 - **Reference Counting**: When a `shared_ptr` is copied or assigned, the internal reference count is incremented. When a `shared_ptr` is destroyed (e.g., goes out of scope) or reset to point to a different object, the reference count is decremented.
@@ -368,14 +379,40 @@ Design spec https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/Lifetim
 // https://llvm.org/devmtg/2019-04/slides/TechTalk-Horvath-Implementing_the_C++_Core_Guidelines_Lifetime.pdf
 https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/owning-memory.html
 
+=== Liftimes in practice
+
+[source, c++]
+----
+// Embedded systems may use placement new...
+
+// clang-tidy message: initializing non-owner 'int32_t *'
+// (aka 'int *') with a // newly created 'gsl::owner<>' 
+///[cppcoreguidelines-owning-memory]
+int32_t* pAnInt = new int32_t(42); // BAD
+
+// Good! Use ownership semantics
+gsl::owner<int32_t*> pAnInt = new int32_t(42); 
+
+// deleting a pointer through a type that is not marked
+// 'gsl::owner<>'; consider using a smart pointer instead
+// [cppcoreguidelines-owning-memory]
+delete pAnInt;
+----
+
+
 === Span over raw arrays
 [source, c++]
 ----
-int array[] = {1, 2, 3, 4, 5};
-gsl::span<int, 5> s(array);
+void pass_span(gsl::span<int> s) {
+    for(int i : s) { /* Range based for loop */ }
+}
 
-for(int i : s) {
-    std::cout << i << std::endl;
+{
+  int array[] = {1, 2, 3, 4, 5};
+  gsl::span<int, 5> s(array);
+
+  pass_span(s); // No array decay!
+  s[6]; // Out of bounds error (customizable assert!)
 }
 ----
 
