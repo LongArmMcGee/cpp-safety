@@ -429,51 +429,12 @@ void pass_span(gsl::span<int> s) {
 
 == Adopting Safe C++
 
-
-
 === Static Analysis
 
 * clang-tidy provides cppcoreguidelines-* checks to enforce these rules
+* MISRA C++ 2023 also incorporates these rules and static analysis tools like LDRA and Polyspace can will enforce these rules once they support the new standard
 
-=== Static Analysis
-
-  Type.1 Avoid Casts: Don't use reinterpret_cast	
-    cppcoreguidelines-pro-type-reinterpret-cast
-  Type.1 Avoid Casts: Don't use static_cast	
-    !!!!
-  Type.1 Avoid Casts: Don't cast between pointer types that can be the same
-    !!!!
-  Type.1 Avoid Casts Don't cast between pointer types that can be implict	
-    !!!!
-  Type.2 Don't use static to downcast, use dynamic_cast instead
-    cppcoreguidelines-pro-type-static-cast-downcast
-  Type.3 Don't use const_cast to cast away const	
-    cppcoreguidelines-pro-type-const-cast
-  Type.4: Don't use C -Style casts	
-    cppcoreguidelines-pro-type-cstyle-cast
-  Type.5: Don't use a variable before it has been initialized	
-    cppcoreguidelines-init-variables
-  Type.6: Always initialize a data member	
-    cppcoreguidelines-pro-type-member-init
-  Type.7: Avoid naked union: Use variant instead.	
-    cppcoreguidelines-pro-type-union-access
-  Type.8: Avoid varargs: Don’t use va_arg arguments.	
-    cppcoreguidelines-pro-type-vararg
-
-=== Static Anlaysis
-
-  Bounds.1: Don’t use pointer arithmetic.	
-    cppcoreguidelines-pro-bounds-pointer-arithmetic
-  Bounds.2: Only index into arrays using constant expressions: 
-    cppcoreguidelines-pro-bounds-constant-array-index
-  Bounds.3: No array-to-pointer decay:
-    cppcoreguidelines-pro-bounds-array-to-pointer-decay
-  Bounds.4: Don’t use standard-library functions and types that are not bounds-checked
-    !!!!
-  Lifetime.1: Don’t dereference a possibly invalid pointer: detect or avoid.
-    cppcoreguidelines-owning-memory
-
-=== Static Analysis
+=== Overlapping rules
 [cols="2*", options="header"]
 |===
 |Rule |Checker
@@ -511,14 +472,8 @@ void pass_span(gsl::span<int> s) {
 |cppcoreguidelines-owning-memory
 |===
 
-
 === MISRA C++ 2023
 image::images/CppStandards.jpg[]
-
-== Safe C++ Static Analysis
-
-* clang-tidy provides cppcoreguidelines-* checks to enforce these rules
-* MISRA C++ 2023 also incorporates these rules and static analysis tools like LDRA and Polyspace can will enforce these rules once they support the new standard
 
 [.columns]
 == Column Text Alignment
