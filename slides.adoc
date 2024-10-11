@@ -22,6 +22,12 @@
 * Static analysis to support safe {cpp}
 * Background reading
 
+== TL;DR 
+
+- Skim the C++ Core Guidelines Safety Profiles
+- Use clang-tidy and enable cppcoreguidelines-* rules
+- Use the Guidelines Support Library if you're using old {cpp} versions
+
 == Memory Safety is Hot
 
 image::images/MemSafePressReleases.jpg[]
