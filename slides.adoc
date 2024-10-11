@@ -472,65 +472,63 @@ void pass_span(gsl::span<int> s) {
 |cppcoreguidelines-owning-memory
 |===
 
-=== MISRA C++ 2023
-image::images/CppStandards.jpg[]
+// Examples
+// [.columns]
+// == Column Text Alignment
 
-[.columns]
-== Column Text Alignment
+// [.column.has-text-left]
+// --
+// Something Short
 
-[.column.has-text-left]
---
-Something Short
+// Something So Long That We Need It Aligned
+// --
 
-Something So Long That We Need It Aligned
---
+// [.column.has-text-justified]
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-[.column.has-text-justified]
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+// [.column.has-text-right]
+// --
+// Something Short
 
-[.column.has-text-right]
---
-Something Short
+// Something So Long That We Need It Aligned
+// --
 
-Something So Long That We Need It Aligned
---
+// [%auto-animate]
+// == !
 
-[%auto-animate]
-== !
+// [source%linenums,js,data-id=planets]
+// ----
+// let planets = [
+//   { name: 'mars', diameter: 6779 },
+// ]
+// ----
 
-[source%linenums,js,data-id=planets]
-----
-let planets = [
-  { name: 'mars', diameter: 6779 },
-]
-----
+// [%auto-animate]
+// == !
 
-[%auto-animate]
-== !
+// [source%linenums,js,data-id=planets]
+// ----
+// let planets = [
+//   { name: 'mars', diameter: 6779 },
+//   { name: 'earth', diameter: 12742 },
+//   { name: 'jupiter', diameter: 139820 }
+// ]
+// ----
 
-[source%linenums,js,data-id=planets]
-----
-let planets = [
-  { name: 'mars', diameter: 6779 },
-  { name: 'earth', diameter: 12742 },
-  { name: 'jupiter', diameter: 139820 }
-]
-----
+// [%auto-animate]
+// == !
 
-[%auto-animate]
-== !
+// [source%linenums,js,data-id=planets]
+// ----
+// let circumferenceReducer = ( c, planet ) => {
+//   return c + planet.diameter * Math.PI;
+// }
 
-[source%linenums,js,data-id=planets]
-----
-let circumferenceReducer = ( c, planet ) => {
-  return c + planet.diameter * Math.PI;
-}
+// let planets = [
+//   { name: 'mars', diameter: 6779 },
+//   { name: 'earth', diameter: 12742 },
+//   { name: 'jupiter', diameter: 139820 }
+// ]
 
-let planets = [
-  { name: 'mars', diameter: 6779 },
-  { name: 'earth', diameter: 12742 },
-  { name: 'jupiter', diameter: 139820 }
-]
-
-let c = planets.reduce( circumferenceReducer, 0 )
-----
+// let c = planets.reduce( circumferenceReducer, 0 )
+// ----
