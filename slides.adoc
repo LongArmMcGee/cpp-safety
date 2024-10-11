@@ -110,10 +110,6 @@ std::cout << f;
 
 
 === Bounds Safety, Raw arrays
-// Bounds.1: Don’t use pointer arithmetic. Use span instead: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
-// Bounds.2: Only index into arrays using constant expressions: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
-// Bounds.3: No array-to-pointer decay: Pass pointers to single objects (only) and Keep pointer arithmetic simple.
-// Bounds.4: Don’t use standard-library functions and types that are not bounds-checked: Use the standard library in a type-safe manner.
 
 [source, c++]
 ----
@@ -168,27 +164,6 @@ image::images/CppCoreGuidelinesGSL.jpg[]
   Conforming code is considered safe for targeted properties, 
   though errors may still arise from other code, libraries, 
   or external factors.
-
-// a set of deterministic and portably enforceable subset of rules
-// that are designed to achieve a specific 
-// guarantee. “Deterministic” means they require only local
-// analysis and could be implemented in a compiler. “Portably enforceable” means they are like
-// language rules, providing consistent enforcement across tools.
-
-//  a set of deterministic and portably enforceable subset of rules
-//  (i.e., restrictions) that are designed to achieve a specific 
-//  guarantee. “Deterministic” means they require only local
-//  analysis and could be implemented in a compiler (though they
-//  don’t need to be). “Portably enforceable” means they are like
-//  language rules, so programmers can count on different
-//  enforcement tools giving the same answer for the same code.
-
-// Conforming code is considered to be safe by construction with
-// regard to the safety properties targeted by that profile.
-// Conforming code will not be the root cause of errors for that
-// property, although such errors might be introduced into a
-// program by other code, libraries or the external environment.
-
 
 === Safety Profiles
 Current profiles include:
