@@ -1,4 +1,4 @@
-= Safe C++
+= Safer C++
 :revealjsdir: https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.9.2
 :revealjs_theme: white
 :revealjs_slideNumber: true
@@ -24,9 +24,8 @@
 
 == TL;DR 
 
-- Skim the C++ Core Guidelines Safety Profiles
-- Use clang-tidy and enable cppcoreguidelines-* rules
-- Use the Guidelines Support Library if you're using old {cpp} versions
+- Use clang-tidy to enforce safety profiles from {cpp} Core Guideines
+- Leverage the Guidelines Support Library to replace unsafe features prohibited by the safety profiles
 
 == Memory Safety is Hot
 
@@ -132,18 +131,16 @@ int32_t badRead = *anInt;
 
 
 [.columns]
-== Make C++ Safe
+== Make  {cpp} Safe
 [.column.right]
 --
 image::images/superset-subset-cpp.jpg[]
 --
 [.column.has-text-left]
 --
-. Don't use unsafe  language features
+. Avoid unsafe language features
 . Augment with safe alternatives
 . Enforce with with static analysis
-// . The Guidelines Support Library (GSL) can provide these for older {cpp} standards versions
-// . https://github.com/microsoft/GSL
 --
 
 == Superset of a Subset
@@ -315,7 +312,6 @@ delete p; // needed: we are about to leave g()
 ----
 
 === shared_ptr<>
-shared_ptr is a shared ownership smart pointer that provides the following features:
 
 // - **Reference Counting**: When a `shared_ptr` is copied or assigned, the internal reference count is incremented. When a `shared_ptr` is destroyed (e.g., goes out of scope) or reset to point to a different object, the reference count is decremented.
 // - **Automatic Resource Management**: The object pointed to is automatically destroyed when the reference count becomes zero, ensuring no memory leaks.
@@ -493,7 +489,7 @@ std::unique_ptr<MyObj> newOwnerPtr = std::move(uniquePtr);
 // ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/ctor-dtor-raii-popl12.pdf[A Mehanized Semanticsc for {cpp} Objet Construction and Destruction, with Appliations to Resourcce Management]
 // ** link:https://github.com/isocpp/CppCoreGuidelines/blob/master/docs/gsl-intro.md[Using the Guidelines Support Library (GSL): A Tutorial and FAQ]
 * link:https://herbsutter.com/2024/03/11/safety-in-context/[C++ Safety In Context, Herb Sutter]
-* They also have many talks available on youtube
+* Many conference talks...
 
 // Examples
 // [.columns]
